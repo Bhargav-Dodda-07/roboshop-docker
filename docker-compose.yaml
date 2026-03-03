@@ -1,7 +1,19 @@
 services:
+  catalogue:
+    image: catalogue:v1
+    container_name: catalogue
+    depends_on:
+    - mongodb
+
   mongodb:
     image: mongodb:v1
-    conatiner_name: mongodb
+    container_name: mongodb
+  
+  redis:
+    image: redis:7
+    conatiner_name: redis
+
+  
 
 networks:
   default:
