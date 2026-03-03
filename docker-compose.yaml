@@ -8,18 +8,26 @@ services:
   mongodb:
     image: mongodb:v1
     container_name: mongodb
+    volumes:
+    - mongodb:/data/db
   
   redis:
     image: redis:7
     container_name: redis
+    volumes:
+    - redis:/data
 
   mysql:
     image: mysql:v1
     container_name: mysql
+    volumes:
+    - mysql:/var/lib/mysql
 
   rabbitmq:
     image: rabbitmq:3
     container_name: rabbitmq
+    volumes:
+    - mongodb:/var/lib/rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: robshop123
@@ -30,7 +38,7 @@ services:
     depends_on:
     - mongodb
     - redis
-
+    
   cart:
     image: cart:v1
     container_name: cart
@@ -71,3 +79,9 @@ networks:
     driver: bridge
     name: roboshop
     external: false    # true if the network is created manually using docker network command
+
+volumes:
+  mongodb:
+  redis:
+  mysql:
+  rabbitmq:
