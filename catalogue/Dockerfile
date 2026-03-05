@@ -12,11 +12,16 @@ FROM node:20.20.0-alpine3.23
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 WORKDIR /opt/server
 COPY --from=build /opt/server /opt/server
+EXPOSE 8080
+LABEL com.project="roboshop" \
+      component="catalogue" \
+      created_by="Bhargav"
 ENV MONGO="true" \
     MONGO_URL="mongodb://mongodb:27017/catalogue"
 RUN chown -R roboshop:roboshop /opt/server
 USER roboshop
 CMD ["node","server.js"]
+ENTRYPOINT ["node"]
 
 # FROM node:20
 # WORKDIR /opt/server
