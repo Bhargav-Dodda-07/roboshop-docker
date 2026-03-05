@@ -8,6 +8,7 @@ RUN npm install
 
 FROM node:20.20.0-alpine3.23
 # create a group and user
+WORKDIR /opt/server
 RUN addgroup -S roboshop $$ adduser -S roboshop -G roboshop && \
     chown -R roboshop:roboshop /opt/server
 EXPOSE 8080
