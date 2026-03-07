@@ -1,3 +1,11 @@
+# # ===========================
+# # Stage 1: Builder (Alpine)
+# # ===========================
+# FROM python:3.10.20 AS build
+# WORKDIR /opt/server
+# COPY payment.ini *.py requirements.txt .
+
+
 FROM python:3.9
 EXPOSE 8080
 WORKDIR /opt/server
